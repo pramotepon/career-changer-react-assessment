@@ -5,7 +5,9 @@ const HomeLayOut = ({ children }) => {
     return (
         <div>
             <Navbar />
-            {children}
+            <div className='container text-center'>
+                {children}
+            </div>
         </div>
     )
 }

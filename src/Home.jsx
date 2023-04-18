@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import HomeLayOut from "./Layouts/HomeLayOut"
 import User from "./components/User";
 import Admin from "./components/Admin";
+import Button from "./components/Button";
 
 const mockEmployees = [
   {
@@ -32,27 +33,6 @@ const Home = () => {
   const [lastname, setLastname] = useState();
   const [position, setPosition] = useState();
 
-  const showEmployees = (employee) => {
-    return (
-      <tr key={employee.id}>
-        <td>{employee.name}</td>
-        <td>{employee.lastname}</td>
-        <td>{employee.position}</td>
-      </tr>
-    )
-  }
-
-  const showAdminEmployees = (employee) => {
-    return (
-      <tr key={employee.id}>
-        <td>{employee.name}</td>
-        <td>{employee.lastname}</td>
-        <td>{employee.position}</td>
-        <td><button onClick={() => onDelete(employee.id)}>Delete</button></td>
-      </tr>
-    )
-  }
-
   const onClickHandler = (paramSector) => {
     setSector(paramSector);
   }
@@ -61,9 +41,9 @@ const Home = () => {
     let lastElement = employees[employees.length - 1];
 
     const new_id = lastElement.id + 1;
-    
+
     const newEmployee = {
-      id: new_id, 
+      id: new_id,
       name: name,
       lastname: lastname,
       position: position,
@@ -71,29 +51,19 @@ const Home = () => {
     setEmployee([...employees, newEmployee]);
   }
 
-  const onDelete = (id) => {
-    // console.log('Delete id', id);
-    setEmployee(employees.filter((employee) => employee.id !== id))
-  }
-
-  useEffect(() => {
-
-  }, [sector, employees]);
-
   if (sector === 'user') {
     return (
-      <User onClickHandler={onClickHandler} showEmployees={showEmployees} employees={employees} />
+      <User onClickHandler={onClickHandler} employees={employees} />
     )
   } else if (sector === 'admin') {
     return (
-      <Admin onClickHandler={onClickHandler} onClickSaveEmployee={onClickSaveEmployee} employees={employees} showAdminEmployees={showAdminEmployees} setName={setName} setLastname={setLastname} setPosition={setPosition} onDelete={onDelete} />
+      <Admin onClickHandler={onClickHandler} setEmployee={setEmployee} employees={employees} name={name} lastname={lastname} position={position} setName={setName} setLastname={setLastname} setPosition={setPosition} />
     )
   } else {
     return (
       <HomeLayOut>
-        <h1>Generation Thailand<br /> React - Assessment</h1>
-        <button onClick={() => setSector('user')}>User Home Sector</button>
-        <button onClick={() => setSector('admin')}>Admin Home Sector</button>
+          <h1>Generation Thailand<br /> React - Assessment</h1>
+          <Button onClickHandler={onClickHandler} />
       </HomeLayOut>
     )
   }
