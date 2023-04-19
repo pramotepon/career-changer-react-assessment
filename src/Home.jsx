@@ -26,6 +26,7 @@ const mockEmployees = [
 ]
 
 const Home = () => {
+
   const [employees, setEmployee] = useState(mockEmployees);
   const [sector, setSector] = useState('normal');
 
@@ -37,20 +38,9 @@ const Home = () => {
     setSector(paramSector);
   }
 
-  const onClickSaveEmployee = () => {
-    let lastElement = employees[employees.length - 1];
-
-    const new_id = lastElement.id + 1;
-
-    const newEmployee = {
-      id: new_id,
-      name: name,
-      lastname: lastname,
-      position: position,
-    }
-    setEmployee([...employees, newEmployee]);
-  }
-
+  useEffect(() => {
+    setEmployee(employees);
+  },[]);
   if (sector === 'user') {
     return (
       <User onClickHandler={onClickHandler} employees={employees} />

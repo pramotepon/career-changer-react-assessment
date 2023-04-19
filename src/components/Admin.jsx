@@ -5,9 +5,13 @@ import Button from './Button'
 const Admin = ({ onClickHandler, setEmployee, employees, name, lastname, position, setName, setLastname, setPosition }) => {
 
     const onClickSaveEmployee = () => {
+
         let lastElement = employees[employees.length - 1];
+
         let new_id = 0;
+
         employees.length === 0 ? new_id = 0 : new_id = lastElement.id + 1 ;
+
         const newEmployee = {
             id: new_id,
             name: name,
@@ -21,11 +25,7 @@ const Admin = ({ onClickHandler, setEmployee, employees, name, lastname, positio
     }
 
     const onDelete = (id) => {
-        // console.log('Delete id', id);
-        // console.log(employees.splice(id, 1));
         // employees.splice(id, 1)
-        // console.log(employees);
-        // console.log(employees.filter((employee) => employee.id !== id));
         // setEmployee([...employees]);
         setEmployee(employees.filter((employee) => employee.id !== id))
     }
