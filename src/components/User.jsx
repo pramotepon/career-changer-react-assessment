@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import HomeLayOut from '../Layouts/HomeLayOut'
+import HomeLayOut from '../layouts/HomeLayout'
 import Button from './Button'
 
 const User = ({ onClickHandler, employees }) => {

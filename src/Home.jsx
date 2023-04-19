@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import HomeLayOut from "./Layouts/HomeLayOut"
+import HomeLayOut from "./layouts/HomeLayout"
 import User from "./components/User";
 import Admin from "./components/Admin";
 import Button from "./components/Button";
